@@ -8,13 +8,23 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-
-
-}
+//class ViewController: UIViewController {
+//
+//    @IBOutlet weak var imageView: UIImageView!
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        // Do any additional setup after loading the view.
+//
+//        self.imageView?.frame = CGRect(x: 50, y: 150, width: 225, height: 225)
+//////        // 角を丸くする
+//        self.imageView?.layer.cornerRadius = self.imageView.frame.size.width/2
+//        self.imageView?.clipsToBounds = true
+//
+//    }
+//
+//
+//
+//
+//}
 
