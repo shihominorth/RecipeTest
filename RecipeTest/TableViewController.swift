@@ -13,6 +13,8 @@ class TableViewController: UITableViewController {
    
     
     let RecipeListCreator = recipeListCreator()
+    
+    
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +23,7 @@ class TableViewController: UITableViewController {
     //        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "recipeItem")
     //        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "creatorsProfie")
 
-        
+        let app = UINavigationBarAppearance()
 //
 //        tableView.rowHeight = 100.0
         
@@ -65,7 +67,7 @@ class TableViewController: UITableViewController {
 //                  label1000.text = RecipeListCreator.creatorRecipeLists[indexPath.row].textTest
 //              }
             
-            cell.lable.text =  RecipeListCreator.creatorRecipeLists[indexPath.row].textTest
+            cell.nameRecipeLabel.text =  RecipeListCreator.creatorRecipeLists[indexPath.row].nameRecipe
 
               //tableView.deselectRow(at: indexPath, animated: true)
             //cell.backgroundColor = .green
@@ -138,7 +140,7 @@ class TableViewController: UITableViewController {
         if section == 0 {
             return view
         } else {
-            view.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+            view.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.768627451, blue: 0.4431372549, alpha: 1)
             view.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             return view
         }

@@ -17,9 +17,9 @@ class recipeListCreator {
         let row1Item = recipeListCreatorItemTableViewCell()
         let row2Item = recipeListCreatorItemTableViewCell()
         
-        row0Item.textTest = "Mako"
-        row1Item.textTest = "Risa"
-        row2Item.textTest = "Usshi USSHI ushishfisafalksfdl"
+        row0Item.nameRecipe = "Mako"
+        row1Item.nameRecipe = "Risa"
+        row2Item.nameRecipe = "Usshi USSHI ushishfisafalksfdl"
         
         creatorRecipeLists.append(row0Item)
         creatorRecipeLists.append(row1Item)

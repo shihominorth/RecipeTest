@@ -10,9 +10,14 @@ import UIKit
 
 class recipeListCreatorItemTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var lable: UILabel!
+    @IBOutlet weak var nameRecipeLabel: UILabel!
+    @IBOutlet weak var numLikesLabel: UILabel!
+    @IBOutlet weak var recipeImage: UIImageView!
     
-    var textTest = ""
+    
+    var nameRecipe = ""
+    var numLikes = 0
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
