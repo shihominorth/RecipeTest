@@ -109,19 +109,56 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 400.0
-        } else if indexPath.section == 1 {
+        }
+        else if indexPath.section == 1 {
             return 150.0
         }
         return 400.0
     }
     
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return "Creator's Profile "
+            return ""
         } else {
             return "Recipe"
         }
     }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 10.0
+        } else {
+            return 40.0
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view:UIView = UIView()
+        if section == 0 {
+            return view
+        } else {
+            view.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+            view.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            return view
+        }
+    }
+        
+    func tableView(tableView: UITableView, willDisplayHeaderView view:UIView, forSection: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.textLabel?.textColor = UIColor.red
+        }
+    }
+    }
+
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        if section == 1 {
+//            return CGSize(width: self.view.bounds.width, height: 30)
+//        } else {
+//            return CGSize(width: self.view.bounds.width, height: 10)
+//        }
+//    }
     
             
 //    func test(for cell:UITableViewCell, with item: recipeListCreatorItemTableViewCell) {
@@ -131,7 +168,7 @@ class TableViewController: UITableViewController {
 //    }
             
     
-}
+
     
 
     /*
@@ -188,5 +225,6 @@ class TableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
 
 

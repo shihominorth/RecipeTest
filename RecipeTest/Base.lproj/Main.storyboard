@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
+        <!--Creator's Profile -->
         <scene sceneID="oNL-EZ-RdL">
             <objects>
                 <tableViewController id="AVe-0E-5aG" customClass="TableViewController" customModule="RecipeTest" customModuleProvider="target" sceneMemberID="viewController">
@@ -14,8 +14,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="sectionIndexColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="creatorsProfie" rowHeight="400" id="Els-cO-nuF" customClass="profieTableViewCell" customModule="RecipeTest" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="creatorsProfie" rowHeight="400" id="Els-cO-nuF" customClass="profieTableViewCell" customModule="RecipeTest" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="400"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Els-cO-nuF" id="MHy-aF-AEw">
@@ -88,7 +90,7 @@
                             <outlet property="delegate" destination="AVe-0E-5aG" id="hiN-UK-Fbc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="A9Y-Qm-OKK">
+                    <navigationItem key="navigationItem" title="Creator's Profile " id="A9Y-Qm-OKK">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="n7z-Nv-C7g"/>
                     </navigationItem>
                 </tableViewController>
