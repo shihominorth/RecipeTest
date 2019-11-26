@@ -26,12 +26,6 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="download (1)" translatesAutoresizingMaskIntoConstraints="NO" id="qu2-1c-H0U">
                                             <rect key="frame" x="94.5" y="77" width="225" height="225"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyz-Rb-GCp">
-                                            <rect key="frame" x="0.0" y="11" width="414" height="36"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="59" translatesAutoresizingMaskIntoConstraints="NO" id="8tj-zW-WLF">
                                             <rect key="frame" x="129.5" y="438" width="155" height="24"/>
                                             <subviews>
@@ -51,26 +45,39 @@
                                         </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xjn-db-GgP">
                                             <rect key="frame" x="126.5" y="347" width="161" height="54"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="161" id="eTx-ZN-dwk"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                             <state key="normal" title="Follow me!">
                                                 <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <connections>
+                                                <action selector="followersAddButton:" destination="Els-cO-nuF" eventType="touchUpInside" id="nfb-Ex-LKA"/>
+                                            </connections>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyz-Rb-GCp">
+                                            <rect key="frame" x="0.0" y="11" width="414" height="36"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="8tj-zW-WLF" firstAttribute="centerX" secondItem="MHy-aF-AEw" secondAttribute="centerX" id="2wr-Db-bif"/>
                                         <constraint firstItem="zyz-Rb-GCp" firstAttribute="top" secondItem="MHy-aF-AEw" secondAttribute="topMargin" id="6gH-Sd-8TH"/>
+                                        <constraint firstItem="zyz-Rb-GCp" firstAttribute="centerX" secondItem="MHy-aF-AEw" secondAttribute="centerX" id="8Hx-14-dNl"/>
                                         <constraint firstItem="zyz-Rb-GCp" firstAttribute="top" secondItem="MHy-aF-AEw" secondAttribute="top" constant="11" id="8iP-Ur-3kj"/>
                                         <constraint firstItem="xjn-db-GgP" firstAttribute="top" secondItem="qu2-1c-H0U" secondAttribute="bottom" constant="45" id="9s0-sZ-0xz"/>
                                         <constraint firstItem="8tj-zW-WLF" firstAttribute="centerY" secondItem="MHy-aF-AEw" secondAttribute="centerY" constant="200" id="FCI-dQ-FUV"/>
                                         <constraint firstItem="qu2-1c-H0U" firstAttribute="centerX" secondItem="MHy-aF-AEw" secondAttribute="centerX" id="Jp9-Qk-nja"/>
                                         <constraint firstItem="xjn-db-GgP" firstAttribute="centerX" secondItem="8tj-zW-WLF" secondAttribute="centerX" id="rbq-vb-Tcc"/>
                                         <constraint firstItem="qu2-1c-H0U" firstAttribute="top" secondItem="zyz-Rb-GCp" secondAttribute="bottom" constant="30" id="s3G-Qu-Sw8"/>
-                                        <constraint firstItem="zyz-Rb-GCp" firstAttribute="centerX" secondItem="qu2-1c-H0U" secondAttribute="centerX" id="tbx-4g-8XS"/>
                                         <constraint firstItem="zyz-Rb-GCp" firstAttribute="leading" secondItem="MHy-aF-AEw" secondAttribute="leading" id="xiX-cI-mEe"/>
                                         <constraint firstItem="xjn-db-GgP" firstAttribute="centerX" secondItem="MHy-aF-AEw" secondAttribute="centerX" id="z6i-5F-X3p"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.97254901959999995" green="0.76862745099999996" blue="0.44471580798219179" alpha="0.30233304794520549" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="creatorNameLabel" destination="zyz-Rb-GCp" id="1Au-tY-RdJ"/>
                                     <outlet property="imgView" destination="qu2-1c-H0U" id="Z7n-ey-mJ7"/>
