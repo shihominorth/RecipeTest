@@ -19,7 +19,7 @@ class recipeListCreator {
         
         row0Item.textTest = "Mako"
         row1Item.textTest = "Risa"
-        row2Item.textTest = "Usshi"
+        row2Item.textTest = "Usshi USSHI ushishfisafalksfdl"
         
         creatorRecipeLists.append(row0Item)
         creatorRecipeLists.append(row1Item)

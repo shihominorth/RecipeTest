@@ -22,8 +22,8 @@ class TableViewController: UITableViewController {
     //        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "creatorsProfie")
 
         
-
-        tableView.rowHeight = 100.0
+//
+//        tableView.rowHeight = 100.0
         
         
     }
@@ -73,16 +73,17 @@ class TableViewController: UITableViewController {
             
         } else {
             
-            var cell = tableView.dequeueReusableCell(withIdentifier: "creatorsProfie")
+            let cell = (tableView.dequeueReusableCell(withIdentifier: "creatorsProfie") as? profieTableViewCell)!
             
-            if cell == nil {
-                cell = UITableViewCell(style: .default, reuseIdentifier: "creatorsProfie")
-            }
+         
             
-            //cell!.backgroundColor = .red
+            cell.imgView.image = UIImage(named: "download (1)")
+            cell.imgView.layer.masksToBounds = false
+            cell.imgView.layer.cornerRadius = 112.5
+            cell.imgView.clipsToBounds = true
 
             
-            return cell!
+            return cell
         }
         
         
@@ -109,14 +110,19 @@ class TableViewController: UITableViewController {
         if indexPath.section == 0 {
             return 400.0
         } else if indexPath.section == 1 {
-            return 100.0
+            return 150.0
         }
         return 400.0
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "ali"
+        if section == 0 {
+            return "Creator's Profile "
+        } else {
+            return "Recipe"
+        }
     }
+    
             
 //    func test(for cell:UITableViewCell, with item: recipeListCreatorItemTableViewCell) {
 //        if let label = cell.viewWithTag(1000) as? UILabel {
