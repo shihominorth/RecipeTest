@@ -12,6 +12,7 @@ class profieTableViewCell: UITableViewCell {
     
     let RecipeListCreator = recipeListCreator()
 
+
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var creatorNameLabel: UILabel!
     @IBOutlet weak var numRecipesLabel: UILabel!
@@ -23,6 +24,7 @@ class profieTableViewCell: UITableViewCell {
     
     @IBAction func followersAddButton(_ sender: Any) {
         numFollwers += 1
+        // how can i show the number when it increase?
     }
     
     

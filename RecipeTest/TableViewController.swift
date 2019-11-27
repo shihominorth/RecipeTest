@@ -141,6 +141,7 @@ class TableViewController: UITableViewController {
             return view
         } else {
             view.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.768627451, blue: 0.4431372549, alpha: 1)
+            // how can I set color of text?
             view.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             return view
         }
@@ -153,14 +154,7 @@ class TableViewController: UITableViewController {
     }
     }
 
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        if section == 1 {
-//            return CGSize(width: self.view.bounds.width, height: 30)
-//        } else {
-//            return CGSize(width: self.view.bounds.width, height: 10)
-//        }
-//    }
+
     
             
 //    func test(for cell:UITableViewCell, with item: recipeListCreatorItemTableViewCell) {
