@@ -9,6 +9,8 @@
 import UIKit
 
 class recipeItemTableViewController: UITableViewController {
+    
+    let identifiers = [1: "recipeMainCell", 2:"iconItem", 3:"creatorCellRecpipe", 4:"ingredients", 5: "how to cook"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,15 +48,12 @@ class recipeItemTableViewController: UITableViewController {
         
         var cell = UITableViewCell()
         
-        
         // create array or dictionary of identifiers
-        if indexPath.row == 1{
-            
-        }
-        else if indexPath.row == 4 {
-            cell = tableView.dequeueReusableCell(withIdentifier: "creatorCellRecpipe", for: indexPath)
-        } else if indexPath.row == 5 {
-            cell = tableView.dequeueReusableCell(withIdentifier: "creatorCellRecpipe", for: indexPath)
+        
+        for (key, value) in identifiers {
+            if indexPath.row == key {
+                cell = tableView.dequeueReusableCell(withIdentifier: value, for: indexPath)
+            }
         }
         return cell
         
