@@ -102,11 +102,11 @@ class TableViewController: UITableViewController {
     }
             
             
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        //RecipeListCreator.creatorRecipeLists.remove(at: indexPath.row)
-        let indexPaths = [indexPath]
-        tableView.deleteRows(at: indexPaths, with: .automatic)
-    }
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        //RecipeListCreator.creatorRecipeLists.remove(at: indexPath.row)
+//        let indexPaths = [indexPath]
+//        tableView.deleteRows(at: indexPaths, with: .automatic)
+//    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {

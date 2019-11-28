@@ -9,5 +9,5 @@
 import Foundation
 
 class creatorItem {
-    let ProfileTableCell = 
+//    let ProfileTableCell = 
 }
