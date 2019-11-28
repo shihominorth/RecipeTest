@@ -16,6 +16,7 @@ class TableViewController: UITableViewController {
     
     
         
+    
     override func viewDidLoad() {
         super.viewDidLoad()
             // Do any additional setup after loading the view.
@@ -119,14 +120,14 @@ class TableViewController: UITableViewController {
     }
     
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return ""
-        } else {
-            return "Recipe"
-        }
-    }
-    
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if section == 0 {
+//            return "xfsdsd"
+//        } else {
+//            return "Recipe"
+//        }
+//    }
+//
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 10.0
@@ -136,13 +137,28 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view:UIView = UIView()
+        
+        let headerLabel = UILabel(frame: CGRect(x: 10, y: 0, width:
+        tableView.bounds.size.width, height: 28))
+        headerLabel.textColor = UIColor.black
+        
+        headerLabel.textAlignment = .left
+        
+        
+        let view:UIView = UIView(frame: CGRect(x: 0,y: 0,width: self.tableView.frame.size.width,height: 40.0))
         if section == 0 {
             return view
         } else {
             view.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.768627451, blue: 0.4431372549, alpha: 1)
             // how can I set color of text?
-            view.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        
+            view.addSubview(headerLabel)
+            headerLabel.text = "Recipe"
+            headerLabel.sizeToFit()
+            headerLabel.textColor=#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            headerLabel.frame.origin.y = view.frame.size.height/2-headerLabel.frame.size.height/2
+            //headerLabel.frame.origin.y = view.frame.size.height/2
+            //view.centerYAnchor.constraint(equalTo: headerLabel.centerYAnchor).isActive = true
             return view
         }
     }
@@ -152,10 +168,12 @@ class TableViewController: UITableViewController {
             headerView.textLabel?.textColor = UIColor.red
         }
     }
-    }
+    
+}
 
 
     
+
             
 //    func test(for cell:UITableViewCell, with item: recipeListCreatorItemTableViewCell) {
 //        if let label = cell.viewWithTag(1000) as? UILabel {
