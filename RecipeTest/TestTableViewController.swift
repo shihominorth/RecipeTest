@@ -1,21 +1,17 @@
 //
-//  recipeItemTableViewController.swift
+//  TestTableViewController.swift
 //  RecipeTest
 //
-//  Created by 北島　志帆美 on 2019-11-27.
+//  Created by 北島　志帆美 on 2019-11-28.
 //  Copyright © 2019 北島　志帆美. All rights reserved.
 //
 
 import UIKit
 
-class recipeItemTableViewController: UITableViewController {
-    
-    let identifiers = [1: "recipeMainCell", 2:"iconItem", 3:"creatorCellRecpipe", 4:"ingredients", 5: "how to cook"]
+class TestTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -28,39 +24,23 @@ class recipeItemTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 5
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        switch section {
-        case 0, 1, 2, 3:
-            return 1
-        case 4:
-            return 1 // this is for the number of ingredients
-        case 5:
-            return 1 // this shows how to cook.
-        default:
-            return 0
-        }
+        return 0
     }
 
-    
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        var cell = UITableViewCell()
-        
-        // create array or dictionary of identifiers
-        
-        for (key, value) in identifiers {
-            if indexPath.row == key {
-                cell = tableView.dequeueReusableCell(withIdentifier: value, for: indexPath)
-            }
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
+        // Configure the cell...
+
         return cell
-        
     }
-    
+    */
 
     /*
     // Override to support conditional editing of the table view.
