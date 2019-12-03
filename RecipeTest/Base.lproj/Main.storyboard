@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,7 +14,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <color key="sectionIndexColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexColor" systemColor="linkColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="creatorsProfie" rowHeight="500" id="Els-cO-nuF" customClass="profieTableViewCell" customModule="RecipeTest" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="500"/>
@@ -161,11 +160,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Creator's Profile " id="A9Y-Qm-OKK" userLabel="Creator's Profile">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="n7z-Nv-C7g"/>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="tCy-hu-4YV">
-                            <connections>
-                                <segue destination="uKF-tD-6aX" kind="show" id="9pu-xA-5YQ"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="tCy-hu-4YV"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HOx-4U-6fk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -196,12 +191,12 @@
                                                     <viewLayoutGuide key="contentLayoutGuide" id="5T5-OO-mhd"/>
                                                     <viewLayoutGuide key="frameLayoutGuide" id="3Dd-Zd-OXc"/>
                                                 </scrollView>
-                                                <pageControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="ppa-dy-QJw">
+                                                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="ppa-dy-QJw" customClass="CHIPageControlJalapeno" customModule="CHIPageControl">
                                                     <rect key="frame" x="167.5" y="306" width="39" height="37"/>
                                                     <color key="pageIndicatorTintColor" red="1" green="0.57637232540000005" blue="0.0" alpha="0.2577322345890411" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="currentPageIndicatorTintColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </pageControl>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0k4-zi-Erd">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0k4-zi-Erd">
                                                     <rect key="frame" x="157.5" y="358" width="59.5" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <nil key="textColor"/>
@@ -367,8 +362,8 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDG-qy-jSs">
-                                            <rect key="frame" x="352" y="11" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDG-qy-jSs">
+                                            <rect key="frame" x="352" y="12" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -377,16 +372,14 @@
                                     <constraints>
                                         <constraint firstItem="dF3-3W-UeV" firstAttribute="top" secondItem="uw4-U7-oe9" secondAttribute="topMargin" id="4aT-8D-29c"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="dF3-3W-UeV" secondAttribute="bottom" constant="1" id="9bx-E6-jxl"/>
-                                        <constraint firstItem="dF3-3W-UeV" firstAttribute="leading" secondItem="uw4-U7-oe9" secondAttribute="leadingMargin" id="EzE-cG-yBh"/>
+                                        <constraint firstItem="cDG-qy-jSs" firstAttribute="centerY" secondItem="uw4-U7-oe9" secondAttribute="centerY" id="AS9-6J-ciG"/>
                                         <constraint firstItem="cDG-qy-jSs" firstAttribute="trailing" secondItem="uw4-U7-oe9" secondAttribute="trailingMargin" id="Igu-8B-5bC"/>
                                         <constraint firstItem="dF3-3W-UeV" firstAttribute="leading" secondItem="uw4-U7-oe9" secondAttribute="leadingMargin" id="TGa-Hi-dp1"/>
                                         <constraint firstAttribute="trailing" secondItem="cDG-qy-jSs" secondAttribute="trailing" constant="20" id="ZAe-sC-7qh"/>
-                                        <constraint firstAttribute="bottom" secondItem="cDG-qy-jSs" secondAttribute="bottom" constant="12.5" id="ksb-Y3-bTZ"/>
-                                        <constraint firstItem="cDG-qy-jSs" firstAttribute="top" secondItem="uw4-U7-oe9" secondAttribute="top" constant="10" id="sES-SG-6j5"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="amountIngredientsLabel" destination="cDG-qy-jSs" id="olH-Rf-dRZ"/>
+                                    <outlet property="amountIngredientsLabel" destination="cDG-qy-jSs" id="Y9b-hO-x0S"/>
                                     <outlet property="ingredientsNameLabel" destination="dF3-3W-UeV" id="v5N-av-Dor"/>
                                 </connections>
                             </tableViewCell>
@@ -428,23 +421,6 @@
                 <tapGestureRecognizer id="XKz-F5-hvs"/>
             </objects>
             <point key="canvasLocation" x="4102.898550724638" y="83.705357142857139"/>
-        </scene>
-        <!--Test View Controller-->
-        <scene sceneID="ZEA-cj-Di9">
-            <objects>
-                <viewController id="uKF-tD-6aX" customClass="TestViewController" customModule="RecipeTest" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kP3-ZZ-RBv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="9Xn-0M-eqa"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="d4W-Dt-mmW"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FQ0-mx-lkp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="YB1-Pv-23P"/>
-            </objects>
-            <point key="canvasLocation" x="4103" y="-622"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NjS-qY-LMl">

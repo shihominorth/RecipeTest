@@ -13,7 +13,7 @@ class TableViewController: UITableViewController {
    
     
     let RecipeListCreator = recipeListCreator()
-    
+
     
         
     
@@ -29,6 +29,11 @@ class TableViewController: UITableViewController {
 //        tableView.rowHeight = 100.0
         
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
     }
 
     // MARK: - Table view data source
@@ -72,6 +77,7 @@ class TableViewController: UITableViewController {
 
               //tableView.deselectRow(at: indexPath, animated: true)
             //cell.backgroundColor = .green
+            
             return cell
             
         } else {

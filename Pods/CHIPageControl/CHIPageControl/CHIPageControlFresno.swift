@@ -46,6 +46,7 @@ open class CHIPageControlFresno: CHIBasePageControl {
     }
 
     override func updateNumberOfPages(_ count: Int) {
+        elements.forEach { $0.removeFromSuperlayer() }
         elements = [CHILayer]()
         elements = (0..<count).map {_ in
             let layer = CHILayer()
@@ -65,11 +66,11 @@ open class CHIPageControlFresno: CHIBasePageControl {
         let y = (self.bounds.size.height - self.diameter)*0.5
         var frame = CGRect(x: x, y: y, width: self.diameter, height: self.diameter)
 
-        elements.forEach() { layer in
-            layer.backgroundColor = self.tintColor.withAlphaComponent(self.inactiveTransparency).cgColor
+        elements.enumerated().forEach() { index, layer in
+            layer.backgroundColor = self.tintColor(position: index).withAlphaComponent(self.inactiveTransparency).cgColor
             if self.borderWidth > 0 {
                 layer.borderWidth = self.borderWidth
-                layer.borderColor = self.tintColor.cgColor
+                layer.borderColor = self.tintColor(position: index).cgColor
             }
             layer.cornerRadius = self.radius
             layer.frame = frame
@@ -91,7 +92,8 @@ open class CHIPageControlFresno: CHIBasePageControl {
     override func update(for progress: Double) {
         guard let min = self.min,
             let max = self.max,
-            progress >= 0 && progress <= Double(numberOfPages - 1) else {
+            progress >= 0 && progress <= Double(numberOfPages - 1),
+            numberOfPages > 1 else {
                 return
         }
 
@@ -125,12 +127,14 @@ open class CHIPageControlFresno: CHIBasePageControl {
         guard frames.indices.contains(index - 1), frames.indices.contains(index) else { return }
 
         let prev = frames[index - 1]
+        let prevColor = tintColor(position: index - 1)
         let current = frames[index]
+        let currentColor = tintColor(position: index)
 
         let elementTotal: CGFloat = current.origin.x - prev.origin.x
         let elementProgress: CGFloat = current.origin.x - active.frame.origin.x
         let elementPercent = (elementTotal - elementProgress) / elementTotal
-
+        
         // x: input, a: input min, b: input max, c: output min, d: output max
         // returns mapped value x from (a,b) to (c, d)
         let linearTransform = { (x: CGFloat, a: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
@@ -139,6 +143,7 @@ open class CHIPageControlFresno: CHIBasePageControl {
 
         element.frame = prev
         element.frame.origin.x = linearTransform(elementPercent, 1.0, 0.0, prev.origin.x, current.origin.x)
+        element.backgroundColor = blend(color1: currentColor, color2: prevColor, progress: elementPercent).withAlphaComponent(self.inactiveTransparency).cgColor
 
         if elementPercent <= 0.5 {
             let originY = linearTransform(elementPercent, 0.0, 0.5, 0, self.radius + self.padding)

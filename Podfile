@@ -6,5 +6,6 @@ target 'RecipeTest' do
   use_frameworks!
 
   # Pods for RecipeTest
-pod 'CHIPageControl', '~> 0.0.1'
+pod 'CHIPageControl', '~> 0.1.3'
+pod 'CHIPageControl/Jalapeno'
 end

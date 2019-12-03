@@ -16,6 +16,8 @@ class IngredientsTableViewCell: UITableViewCell {
     var ingredientName = ""
     var amountIngredient = ""
     
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

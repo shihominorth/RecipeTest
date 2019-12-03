@@ -46,6 +46,7 @@ open class CHIPageControlJalapeno: CHIBasePageControl {
     }
 
     override func updateNumberOfPages(_ count: Int) {
+        inactive.forEach { $0.removeFromSuperlayer() }
         inactive = [CHILayer]()
         inactive = (0..<count).map {_ in
             let layer = CHILayer()
@@ -60,7 +61,8 @@ open class CHIPageControlJalapeno: CHIBasePageControl {
     
     override func update(for progress: Double) {
         guard progress >= 0 && progress <= Double(numberOfPages - 1),
-            let firstFrame = self.inactive.first?.frame else {
+            let firstFrame = self.inactive.first?.frame,
+            numberOfPages > 1 else {
                 return
         }
         let left = firstFrame.origin.x
@@ -95,7 +97,7 @@ open class CHIPageControlJalapeno: CHIBasePageControl {
             middleX = rightX
         }
         
-        let top = (self.frame.size.height - self.diameter)*0.5
+        let top = (self.bounds.size.height - self.diameter)*0.5
         
         let points:[CGPoint] = [
             CGPoint(x:leftX, y:radius + top),
@@ -127,11 +129,11 @@ open class CHIPageControlJalapeno: CHIBasePageControl {
         let y = (self.bounds.size.height - self.diameter)*0.5
         var frame = CGRect(x: x, y: y, width: self.diameter, height: self.diameter)
         
-        inactive.forEach() { layer in
-            layer.backgroundColor = self.tintColor.withAlphaComponent(self.inactiveTransparency).cgColor
+        inactive.enumerated().forEach() { index, layer in
+            layer.backgroundColor = self.tintColor(position: index).withAlphaComponent(self.inactiveTransparency).cgColor
             if self.borderWidth > 0 {
                 layer.borderWidth = self.borderWidth
-                layer.borderColor = self.tintColor.cgColor
+                layer.borderColor = self.tintColor(position: index).cgColor
             }
             layer.cornerRadius = self.radius
             layer.frame = frame

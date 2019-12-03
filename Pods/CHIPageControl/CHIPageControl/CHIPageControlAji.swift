@@ -43,6 +43,7 @@ open class CHIPageControlAji: CHIBasePageControl {
     }
 
     override func updateNumberOfPages(_ count: Int) {
+        inactive.forEach { $0.removeFromSuperlayer() }
         inactive = [CHILayer]()
         inactive = (0..<count).map {_ in
             let layer = CHILayer()
@@ -59,19 +60,19 @@ open class CHIPageControlAji: CHIBasePageControl {
         super.layoutSubviews()
         
         let floatCount = CGFloat(inactive.count)
-        let x = (self.bounds.size.width - self.diameter*floatCount - self.padding*(floatCount-1))*0.5
-        let y = (self.bounds.size.height - self.diameter)*0.5
+        let x = ceil((self.bounds.size.width - self.diameter*floatCount - self.padding*(floatCount-1))*0.5)
+        let y = ceil((self.bounds.size.height - self.diameter)*0.5)
         var frame = CGRect(x: x, y: y, width: self.diameter, height: self.diameter)
 
         active.cornerRadius = self.radius
         active.backgroundColor = (self.currentPageTintColor ?? self.tintColor)?.cgColor
         active.frame = frame
 
-        inactive.forEach() { layer in
-            layer.backgroundColor = self.tintColor.withAlphaComponent(self.inactiveTransparency).cgColor
+        inactive.enumerated().forEach() { index, layer in
+            layer.backgroundColor = self.tintColor(position: index).withAlphaComponent(self.inactiveTransparency).cgColor
             if self.borderWidth > 0 {
                 layer.borderWidth = self.borderWidth
-                layer.borderColor = self.tintColor.cgColor
+                layer.borderColor = self.tintColor(position: index).cgColor
             }
             layer.cornerRadius = self.radius
             layer.frame = frame
@@ -83,6 +84,7 @@ open class CHIPageControlAji: CHIBasePageControl {
     override func update(for progress: Double) {
         guard let min = inactive.first?.frame,
               let max = inactive.last?.frame,
+              numberOfPages > 1,
               progress >= 0 && progress <= Double(numberOfPages - 1) else {
                 return
         }

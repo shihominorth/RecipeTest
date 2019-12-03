@@ -47,6 +47,7 @@ open class CHIPageControlPaprika: CHIBasePageControl {
     }
 
     override func updateNumberOfPages(_ count: Int) {
+        elements.forEach { $0.removeFromSuperlayer() }
         elements.forEach() { $0.removeFromSuperlayer() }
         elements = [CHILayer]()
         elements = (0..<count).map {_ in
@@ -67,11 +68,11 @@ open class CHIPageControlPaprika: CHIBasePageControl {
         let y = (self.bounds.size.height - self.diameter)*0.5
         var frame = CGRect(x: x, y: y, width: self.diameter, height: self.diameter)
         
-        elements.forEach() { layer in
-            layer.backgroundColor = self.tintColor.withAlphaComponent(self.inactiveTransparency).cgColor
+        elements.enumerated().forEach() { index, layer in
+            layer.backgroundColor = self.tintColor(position: index).withAlphaComponent(self.inactiveTransparency).cgColor
             if self.borderWidth > 0 {
                 layer.borderWidth = self.borderWidth
-                layer.borderColor = self.tintColor.cgColor
+                layer.borderColor = self.tintColor(position: index).cgColor
             }
             layer.cornerRadius = self.radius
             layer.frame = frame
@@ -92,7 +93,8 @@ open class CHIPageControlPaprika: CHIBasePageControl {
     
     override func update(for progress: Double) {
         guard let min = self.min,
-            let max = self.max else {
+            let max = self.max,
+            numberOfPages > 1 else {
                 return
         }
         var progress = progress
@@ -137,9 +139,17 @@ open class CHIPageControlPaprika: CHIBasePageControl {
         guard frames.indices.contains(page), frames.indices.contains(page + 1) else { return }
         
         let prev = frames[page]
+        let prevColor = tintColor(position: page)
         let current = frames[page + 1]
+        let currentColor = tintColor(position: page + 1)
+        
+        let elementTotal: CGFloat = current.origin.x - prev.origin.x
+        let elementProgress: CGFloat = current.origin.x - active.frame.origin.x
+        let elementPercent = (elementTotal - elementProgress) / elementTotal
+        
+        element.borderColor = blend(color1: currentColor, color2: prevColor, progress: elementPercent).cgColor
         element.frame = prev
-        element.frame.origin.x += current.origin.x - active.frame.origin.x
+        element.frame.origin.x += elementProgress
         element.frame.origin.y = 2*min.origin.y - active.frame.origin.y
     }
     

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,7 +22,7 @@
 		6FB4422023907D9E00029659 /* IngredientsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB4421F23907D9E00029659 /* IngredientsTableViewCell.swift */; };
 		6FB442222390814A00029659 /* HowToCookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB442212390814A00029659 /* HowToCookTableViewCell.swift */; };
 		6FB442262390BCCF00029659 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB442252390BCCF00029659 /* TestViewController.swift */; };
-		6FB4422A2392371300029659 /* ingredientsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB442292392371300029659 /* ingredientsList.swift */; };
+		6FB4422A2392371300029659 /* IngredientsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB442292392371300029659 /* IngredientsList.swift */; };
 		6FB4422C2392373C00029659 /* howToCookList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB4422B2392373C00029659 /* howToCookList.swift */; };
 		6FEC9770237F63D200D185BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEC976F237F63D200D185BF /* AppDelegate.swift */; };
 		6FEC9772237F63D200D185BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEC9771237F63D200D185BF /* SceneDelegate.swift */; };
@@ -47,7 +47,7 @@
 		6FB4421F23907D9E00029659 /* IngredientsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsTableViewCell.swift; sourceTree = "<group>"; };
 		6FB442212390814A00029659 /* HowToCookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToCookTableViewCell.swift; sourceTree = "<group>"; };
 		6FB442252390BCCF00029659 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		6FB442292392371300029659 /* ingredientsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingredientsList.swift; sourceTree = "<group>"; };
+		6FB442292392371300029659 /* IngredientsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsList.swift; sourceTree = "<group>"; };
 		6FB4422B2392373C00029659 /* howToCookList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = howToCookList.swift; sourceTree = "<group>"; };
 		6FEC976C237F63D200D185BF /* RecipeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FEC976F237F63D200D185BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,7 +88,6 @@
 				8F377799B8390170B5974859 /* Pods-RecipeTest.debug.xcconfig */,
 				C69446C5813BA8A88555898C /* Pods-RecipeTest.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -129,7 +128,7 @@
 		6FB4422F239237D800029659 /* List for recipe page */ = {
 			isa = PBXGroup;
 			children = (
-				6FB442292392371300029659 /* ingredientsList.swift */,
+				6FB442292392371300029659 /* IngredientsList.swift */,
 				6FB4422B2392373C00029659 /* howToCookList.swift */,
 				6F5638EA238511970071B33B /* recipeListCreatorItemTableViewCell.swift */,
 			);
@@ -294,7 +293,7 @@
 				6F5638E92385114C0071B33B /* recipeListCreator.swift in Sources */,
 				6F5638EB238511970071B33B /* recipeListCreatorItemTableViewCell.swift in Sources */,
 				6FEC9774237F63D200D185BF /* ViewController.swift in Sources */,
-				6FB4422A2392371300029659 /* ingredientsList.swift in Sources */,
+				6FB4422A2392371300029659 /* IngredientsList.swift in Sources */,
 				6FB4421C2390793D00029659 /* iconItemTableViewCell.swift in Sources */,
 				6F4B265A238F3EF50026440F /* recipeItemScrollView.swift in Sources */,
 				6FB442222390814A00029659 /* HowToCookTableViewCell.swift in Sources */,

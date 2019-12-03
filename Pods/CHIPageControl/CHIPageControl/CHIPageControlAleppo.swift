@@ -44,6 +44,7 @@ open class CHIPageControlAleppo: CHIBasePageControl {
     }
 
     override func updateNumberOfPages(_ count: Int) {
+        inactive.forEach { $0.removeFromSuperlayer() }
         inactive = [CHILayer]()
         inactive = (0..<count).map {_ in
             let layer = CHILayer()
@@ -58,7 +59,9 @@ open class CHIPageControlAleppo: CHIBasePageControl {
 
     override func update(for progress: Double) {
         guard progress >= 0 && progress <= Double(numberOfPages - 1),
-        let firstFrame = self.inactive.first?.frame else { return }
+            let firstFrame = self.inactive.first?.frame,
+            numberOfPages > 1 else { return }
+
         let normalized = progress * Double(diameter + padding)
         let distance = abs(round(progress) - progress)
         let mult = 1 + distance * 2
@@ -84,11 +87,11 @@ open class CHIPageControlAleppo: CHIBasePageControl {
         active.backgroundColor = (self.currentPageTintColor ?? self.tintColor)?.cgColor
         active.frame = frame
 
-        inactive.forEach() { layer in
-            layer.backgroundColor = self.tintColor.withAlphaComponent(self.inactiveTransparency).cgColor
+        inactive.enumerated().forEach() { index, layer in
+            layer.backgroundColor = self.tintColor(position: index).withAlphaComponent(self.inactiveTransparency).cgColor
             if self.borderWidth > 0 {
                 layer.borderWidth = self.borderWidth
-                layer.borderColor = self.tintColor.cgColor
+                layer.borderColor = self.tintColor(position: index).cgColor
             }
             layer.cornerRadius = self.radius
             layer.frame = frame

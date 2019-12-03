@@ -51,6 +51,7 @@ open class CHIPageControlJaloro: CHIBasePageControl {
     }
 
     override func updateNumberOfPages(_ count: Int) {
+        inactive.forEach { $0.removeFromSuperlayer() }
         inactive = [CHILayer]()
         inactive = (0..<count).map {_ in
             let layer = CHILayer()
@@ -76,11 +77,11 @@ open class CHIPageControlJaloro: CHIBasePageControl {
         active.backgroundColor = (self.currentPageTintColor ?? self.tintColor)?.cgColor
         active.frame = frame
 
-        inactive.forEach() { layer in
-            layer.backgroundColor = self.tintColor.withAlphaComponent(self.inactiveTransparency).cgColor
+        inactive.enumerated().forEach() { index, layer in
+            layer.backgroundColor = self.tintColor(position: index).withAlphaComponent(self.inactiveTransparency).cgColor
             if self.borderWidth > 0 {
                 layer.borderWidth = self.borderWidth
-                layer.borderColor = self.tintColor.cgColor
+                layer.borderColor = self.tintColor(position: index).cgColor
             }
             layer.cornerRadius = self.radius
             layer.frame = frame
@@ -92,7 +93,8 @@ open class CHIPageControlJaloro: CHIBasePageControl {
     override func update(for progress: Double) {
         guard let min = inactive.first?.frame,
               let max = inactive.last?.frame,
-              progress >= 0 && progress <= Double(numberOfPages - 1) else {
+              progress >= 0 && progress <= Double(numberOfPages - 1),
+              numberOfPages > 1 else {
                 return
         }
 

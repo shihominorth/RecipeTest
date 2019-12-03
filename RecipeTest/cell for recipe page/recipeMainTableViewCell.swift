@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CHIPageControl
 
 
 class recipeMainTableViewCell: UITableViewCell {
@@ -15,7 +16,8 @@ class recipeMainTableViewCell: UITableViewCell {
     @IBOutlet weak var titleRecipeLabel: UILabel!
     @IBOutlet weak var explanationLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var pageControl: UIPageControl!
+    //@IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var pageControl: CHIBasePageControl!
     
     
     var numImg = CGFloat(2.0) 
@@ -32,7 +34,7 @@ class recipeMainTableViewCell: UITableViewCell {
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width * numImg, height: scrollView.bounds.height)
         scrollView.isPagingEnabled = true
 
-        
+        pageControl.tintColor = .orange
         // they can be funciton.
        let firstImageView = UIImageView(image: UIImage(named: "breakfast-450x310"))
            firstImageView.frame = CGRect(x: 0.0, y: 0.0, width: scrollView.bounds.width, height: scrollView.bounds.height)
