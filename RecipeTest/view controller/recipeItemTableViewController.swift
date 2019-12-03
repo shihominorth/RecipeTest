@@ -69,8 +69,8 @@ class recipeItemTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
               case 0:
-                  return 500
-//            return UITableView.automaticDimension
+//                  return 500
+            return UITableView.automaticDimension
               case 1:
                   return 50 // this is for the number of ingredients
               case 2:
