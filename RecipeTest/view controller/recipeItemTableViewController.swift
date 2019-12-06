@@ -12,6 +12,7 @@ import CHIPageControl
 
 class recipeItemTableViewController: UITableViewController {
     
+    
     let identifiers = [1: "recipeMainCell", 2:"iconItem", 3:"creatorCellRecpipe", 4:"ingredients", 5: "how to cook"]
 
     var numImg = CGFloat(2.0) // depends on how many pictures user want to use, it is gonna change.
@@ -48,17 +49,17 @@ class recipeItemTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 5
+        return 7
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         switch section {
-        case 0, 1, 2 :
+        case 0, 1, 2, 3, 4:
             return 1
-        case 3:
+        case 5:
             return  ingredients.ingredientsList.count// this is for the number of ingredients
-        case 4:
+        case 6:
             return howToCookList.howToCookList.count // this shows how to cook.
         default:
             return 0
@@ -68,20 +69,19 @@ class recipeItemTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
-              case 0:
-//                  return 500
+        case 0:
+            return 400
+        case 3:
+            return 45  // this is for the number of ingredients
+        case 4:
+            return 78 // this shows how to cook.
+        default:
             return UITableView.automaticDimension
-              case 1:
-                  return 50 // this is for the number of ingredients
-              case 2:
-                  return 78 // this shows how to cook.
-              default:
-                return UITableView.automaticDimension
-              }
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 || section == 1 || section == 2 {
+        if section == 0 || section == 1 || section == 2 || section == 3 || section == 4 {
             return 0.0
         }
         else {
@@ -90,6 +90,8 @@ class recipeItemTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = UITableViewCell()
         
         if indexPath.section == 0 {
             let cell : recipeMainTableViewCell =  (tableView.dequeueReusableCell(withIdentifier:"recipeMainCell") as? recipeMainTableViewCell)!
@@ -116,6 +118,7 @@ class recipeItemTableViewController: UITableViewController {
                 
                 cell.pageControl.numberOfPages = Int(self.numImg)
              
+                
                 let currentProgress = Int(cell.pageControl.progress)
                 let numberOfPages = cell.pageControl.numberOfPages
                    
@@ -131,14 +134,30 @@ class recipeItemTableViewController: UITableViewController {
             }
             
             
-            cell.titleRecipeLabel.text = "Chinese Restaurant-Style Sautéed Green Beans"
-            cell.explanationLabel.text = "I've made these over and over, and it doesn't seem to matter how many I make, they disappear! The beans do shrivel considerable, but people also love them, so make far more than you think you'll eat. Huge hit!"
+            return cell
             
+        }
+        else if indexPath.section == 1 {
+            let cell: titleTableViewCell = (tableView.dequeueReusableCell(withIdentifier: "title") as? titleTableViewCell)!
+           
+            cell.titleLabel.text = "Chinese Restaurant-Style Sautéed Green Beans"
             
             return cell
-                    
-                }
-        else if indexPath.section == 1 {
+        }
+            
+        else if indexPath.section == 2 {
+            
+            let cell: explanationTableViewCell = (tableView.dequeueReusableCell(withIdentifier: "explanation") as? explanationTableViewCell)!
+            
+            cell.explanationLabel.text = "Brussels sprouts are one of the most underrated vegetables. These cruciferous green gems are good for you and, when cooked correctly, so darn delicious. Still not sure? We’ve rounded up a few recipes that prove it!"
+            
+            
+            
+//            cell.explanationLabel.sizeToFit()
+//                       cell.heightForLabel.constant =  cell.explanationLabel.frame.size.height
+            return cell
+        }
+        else if indexPath.section == 3 {
             let cell: iconItemTableViewCell = (tableView.dequeueReusableCell(withIdentifier: "iconItem") as? iconItemTableViewCell)!
             
             cell.numLikeLabel.text = "11"
@@ -146,13 +165,13 @@ class recipeItemTableViewController: UITableViewController {
             return cell
             
         }
-        else if indexPath.section == 2 {
+        else if indexPath.section == 4 {
             let cell: creatorCellRecpipeTableViewCell = (tableView.dequeueReusableCell(withIdentifier: "creatorCellRecpipe") as? creatorCellRecpipeTableViewCell)!
             
             cell.creatorNameLabel.text = "Risa Takata"
             return cell
         }
-        else if indexPath.section == 3 {
+        else if indexPath.section == 5 {
             let cell: IngredientsTableViewCell = (tableView.dequeueReusableCell(withIdentifier: "ingredients") as? IngredientsTableViewCell)!
             
             let _ = ingredients.ingredientsList[indexPath.row]
@@ -160,8 +179,8 @@ class recipeItemTableViewController: UITableViewController {
             cell.ingredientsNameLabel.text =  ingredients.ingredientsList[indexPath.row].ingredientName
             cell.amountIngredientsLabel.text = ingredients.ingredientsList[indexPath.row].amountIngredient
             return cell
-        }
-        else {
+        } else {
+        
             let cell: HowToCookTableViewCell = (tableView.dequeueReusableCell(withIdentifier: "how to cook") as? HowToCookTableViewCell)!
             
             let _ = howToCookList.howToCookList[indexPath.row]
@@ -170,10 +189,10 @@ class recipeItemTableViewController: UITableViewController {
             cell.howToCookLabel.text = howToCookList.howToCookList[indexPath.row].howToCook
             
             return cell
-        }
-       
-                
         
+    }
+        
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -185,10 +204,10 @@ class recipeItemTableViewController: UITableViewController {
         
         
         let view:UIView = UIView(frame: CGRect(x: 0,y: 0,width: self.tableView.frame.size.width,height: 40.0))
-        if section == 0 || section == 1 || section == 2 {
+        if section == 0 || section == 1 || section == 2 || section == 3 || section == 4{
             return view
         }
-        else if section == 3 {
+        else if section == 5 {
             view.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.768627451, blue: 0.4431372549, alpha: 1)
             // how can I set color of text?
         
@@ -201,7 +220,7 @@ class recipeItemTableViewController: UITableViewController {
             //view.centerYAnchor.constraint(equalTo: headerLabel.centerYAnchor).isActive = true
             return view
         }
-        else if section == 4 {
+        else if section == 6 {
             view.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.768627451, blue: 0.4431372549, alpha: 1)
             // how can I set color of text?
         
