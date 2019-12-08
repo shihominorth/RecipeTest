@@ -104,7 +104,7 @@ class recipeItemTableViewController: UITableViewController {
             firstImageView.contentMode = UIView.ContentMode.scaleAspectFit
             cell.scrollView.addSubview(firstImageView)
 
-                   // 2枚目の画像r
+                   // 2枚目の画像
             let secondImageView = UIImageView(image: UIImage(named: "images"))
             secondImageView.frame = CGRect(x: cell.scrollView.bounds.width * 1.0, y: 0.0, width: cell.scrollView.bounds.width, height: cell.scrollView.bounds.height)
             secondImageView.contentMode = UIView.ContentMode.scaleAspectFit

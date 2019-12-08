@@ -177,20 +177,6 @@ class TableViewController: UITableViewController {
     
 }
 
-
-    
-
-            
-//    func test(for cell:UITableViewCell, with item: recipeListCreatorItemTableViewCell) {
-//        if let label = cell.viewWithTag(1000) as? UILabel {
-//            label.text = item.textTest
-//        }
-//    }
-            
-    
-
-    
-
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
