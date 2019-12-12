@@ -11,19 +11,17 @@ import UIKit
 class profieTableViewCell: UITableViewCell {
     
     let RecipeListCreator = recipeListCreator()
+    let numOfCreatorhasTableViewCell = NumOfCreatorhasTableViewCell()
 
 
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var creatorNameLabel: UILabel!
-    @IBOutlet weak var numRecipesLabel: UILabel!
-    @IBOutlet weak var numFollwersLabel: UILabel!
     
-    var numFollwers = 0
     lazy var numRecipes = RecipeListCreator.creatorRecipeLists.count
     
     
     @IBAction func followersAddButton(_ sender: Any) {
-        numFollwers += 1
+        numOfCreatorhasTableViewCell.numOfFollowed += 1
         // how can i show the number when it increase?
     }
     
@@ -32,8 +30,7 @@ class profieTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         creatorNameLabel.text = "Lay FangYi"
-        numFollwersLabel.text = "\(numFollwers) follwers"
-        numRecipesLabel.text = "\(numRecipes) recipes"
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

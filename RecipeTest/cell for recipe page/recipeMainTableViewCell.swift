@@ -33,10 +33,20 @@ class recipeMainTableViewCell: UITableViewCell {
 
         pageControl.tintColor = .orange
         
+//        scrollView.delegate = self as! UIScrollViewDelegate
+//        pageControl.addTarget(self, action: #selector(didChangePage), for: .valueChanged)
+//        
+//        pageControl.autoresizingMask = [.flexibleTopMargin, .flexibleWidth]
        }
 
         
-        
+    @objc func didChangePage(sender: CHIBasePageControl){
+          var offset = scrollView.contentOffset
+          offset.x = CGFloat(sender.currentPage) * scrollView.bounds.size.width;
+          scrollView.setContentOffset(offset, animated: true)
+        }
+    
+   
        
 
        override func setSelected(_ selected: Bool, animated: Bool) {

@@ -9,15 +9,15 @@
 import UIKit
 
 class creatorCellRecpipeTableViewCell: UITableViewCell {
-    
-    let ProfieTableViewCell = profieTableViewCell()
+
+    let numOfCreatorhasTableViewCell = NumOfCreatorhasTableViewCell()
 
     @IBOutlet weak var creatorNameLabel: UILabel!
     @IBOutlet weak var imgCreator: UIButton!
     
     
     @IBAction func followerAdding(_ sender: Any) {
-        ProfieTableViewCell.numFollwers += 1
+        numOfCreatorhasTableViewCell.numOfFollowed += 1
     }
     
     

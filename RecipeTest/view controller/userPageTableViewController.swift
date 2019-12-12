@@ -48,9 +48,12 @@ class userPageTableViewController: UITableViewController {
         if section == 0 {
             let cell = (tableView.dequeueReusableCell(withIdentifier: "Main User Page", for: indexPath) as? mainUserProfileTableViewCell)!
 
+            
+            // picture should be much smaller
             // Configure the cell...
             cell.userImageView.layer.masksToBounds = false
-            cell.userImageView.layer.cornerRadius = 112.5
+//            cell.userImageView.layer.cornerRadius = 112.5
+            cell.userImageView.layer.cornerRadius = cell.userImageView.bounds.width / 2
             cell.userImageView.clipsToBounds = true
 
             return cell
@@ -89,7 +92,7 @@ class userPageTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            return 350
+            return 135
         case 1:
             return 60
         case 2:
@@ -140,14 +143,32 @@ class userPageTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        // Get the new view controller using segue.destination.
+//        // Pass the selected object to the new view controller.
+//
+//
+//    }
+    
+//    func segueToSecondViewController() {
+//        let cell = tableView.
+//        .performSegue(withIdentifier: "to Shopping List", sender: self.parameters)
+//    }
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let buttonTitle = buttons.buttons[indexPath.row].titleButton
+//            
+//        if buttonTitle == "Shopping List" {
+//            let segue = self.performSegue(withIdentifier: "to Shopping List", sender:nil)
+//            let distination =  segue.destination as! ShoppingListTableViewController
+//            
+//        }
     }
-    */
+    
 
 }

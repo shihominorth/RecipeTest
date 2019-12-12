@@ -40,14 +40,15 @@ class TableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if section == 0 {
+        if section == 0 || section == 1 {
             return 1
-        } else if section == 1 {
+        }
+        else if section == 2 {
             return RecipeListCreator.creatorRecipeLists.count
         } else {
             return 0
@@ -59,7 +60,29 @@ class TableViewController: UITableViewController {
     // about deta the cell has
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.section == 1 {
+        if indexPath.section == 0 {
+            
+                
+                let cell = (tableView.dequeueReusableCell(withIdentifier: "creatorsProfie") as? profieTableViewCell)!
+                
+             
+                
+                cell.imgView.image = UIImage(named: "download (1)")
+                cell.imgView.layer.masksToBounds = false
+                cell.imgView.layer.cornerRadius = cell.imgView.bounds.width / 2
+                cell.imgView.clipsToBounds = true
+
+                
+                return cell
+            
+        }
+        else if indexPath.section == 1 {
+             let cell = (tableView.dequeueReusableCell(withIdentifier: "number") as? NumOfCreatorhasTableViewCell)!
+            
+            return cell
+        }
+        else if indexPath.section == 2 {
+        
             let cell : recipeListCreatorItemTableViewCell =  (tableView.dequeueReusableCell(withIdentifier: "recipeItem") as? recipeListCreatorItemTableViewCell)!
             
 //            if cell==nil {
@@ -80,22 +103,12 @@ class TableViewController: UITableViewController {
             
             return cell
             
-        } else {
-            
-            let cell = (tableView.dequeueReusableCell(withIdentifier: "creatorsProfie") as? profieTableViewCell)!
-            
-         
-            
-            cell.imgView.image = UIImage(named: "download (1)")
-            cell.imgView.layer.masksToBounds = false
-            cell.imgView.layer.cornerRadius = 112.5
-            cell.imgView.clipsToBounds = true
-
-            
-            return cell
+        
+        
         }
         
-        
+        let cell = UITableViewCell()
+        return cell
         
     }
             
@@ -117,12 +130,12 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 500.0
+            return 135.0
         }
-        else if indexPath.section == 1 {
+        else if indexPath.section == 2 {
             return 150.0
         }
-        return 400.0
+        return UITableView.automaticDimension
     }
     
     
@@ -135,10 +148,10 @@ class TableViewController: UITableViewController {
 //    }
 //
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 10.0
-        } else {
+        if section == 2 {
             return 40.0
+        } else {
+            return 0.0
         }
     }
     
@@ -152,7 +165,7 @@ class TableViewController: UITableViewController {
         
         
         let view:UIView = UIView(frame: CGRect(x: 0,y: 0,width: self.tableView.frame.size.width,height: 40.0))
-        if section == 0 {
+        if section == 0 || section == 1{
             return view
         } else {
             view.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.768627451, blue: 0.4431372549, alpha: 1)

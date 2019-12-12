@@ -12,6 +12,8 @@ import CHIPageControl
 
 class recipeItemTableViewController: UITableViewController {
     
+//    @IBOutlet weak var RecipeImageScrollView: UIScrollView!
+//    @IBOutlet weak var pageControl: CHIPageControlJalapeno!
     
     let identifiers = [1: "recipeMainCell", 2:"iconItem", 3:"creatorCellRecpipe", 4:"ingredients", 5: "how to cook"]
 
@@ -40,10 +42,36 @@ class recipeItemTableViewController: UITableViewController {
        
        override func viewDidLoad() {
            super.viewDidLoad()
-        
+        let cell: recipeMainTableViewCell = (tableView.dequeueReusableCell(withIdentifier:"recipeMainCell") as? recipeMainTableViewCell)!
         
            // Do any additional setup after loading the view.
+        cell.scrollView.delegate = self
+        
        }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let cell: recipeMainTableViewCell = (tableView.dequeueReusableCell(withIdentifier:"recipeMainCell") as? recipeMainTableViewCell)!
+        
+        var direction = Direction.right
+        cell.pageControl.numberOfPages = Int(self.numImg)
+
+//        cell.pageControl.progress = 0
+        
+        
+        let currentProgress = Int(cell.pageControl.progress)
+        let numberOfPages = cell.pageControl.numberOfPages
+        
+        // this metod isn't called.
+        cell.pageControl.addTarget(cell.scrollView, action: #selector(didChangePage), for: .valueChanged)
+
+        
+        
+            let newProgress = direction.newProgress(withCurrentProgress: currentProgress)
+            //self.pageControl.set(progress: newProgress, animated: true)
+            cell.pageControl.set(progress: newProgress, animated: true)
+        print(cell.pageControl.progress)
+    }
 
     // MARK: - Table view data source
 
@@ -89,12 +117,22 @@ class recipeItemTableViewController: UITableViewController {
         }
     }
     
+//    @objc fileprivate func didChangePage(_ currentProgress: Int, _ numberOfPages: Int, _ direction: recipeItemTableViewController.Direction) {
+//        if currentProgress == numberOfPages - 1 {
+//            direction = .left
+//        }
+//        else if currentProgress == 0 {
+//            direction = .right
+//        }
+//    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell()
         
         if indexPath.section == 0 {
             let cell : recipeMainTableViewCell =  (tableView.dequeueReusableCell(withIdentifier:"recipeMainCell") as? recipeMainTableViewCell)!
+            
             
             //let _ = RecipeListCreator.creatorRecipeLists[indexPath.row]
             
@@ -113,25 +151,26 @@ class recipeItemTableViewController: UITableViewController {
             
             
             // page controll
-            var direction = Direction.right
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                
-                cell.pageControl.numberOfPages = Int(self.numImg)
-             
-                
-                let currentProgress = Int(cell.pageControl.progress)
-                let numberOfPages = cell.pageControl.numberOfPages
-                   
-                if currentProgress == numberOfPages - 1 {
-                    direction = .left
-                }
-                else if currentProgress == 0 {
-                    direction = .right
-                }
-                let newProgress = direction.newProgress(withCurrentProgress: currentProgress)
-                //self.pageControl.set(progress: newProgress, animated: true)
-                cell.pageControl.set(progress: newProgress, animated: true)
-            }
+//            var direction = Direction.right
+//            cell.pageControl.numberOfPages = Int(self.numImg)
+//
+//            cell.pageControl.progress = 0
+//
+//
+//            let currentProgress = Int(cell.pageControl.progress)
+//            let numberOfPages = cell.pageControl.numberOfPages
+//
+//            cell.pageControl.addTarget(cell.scrollView, action: #selector(didChangePage), for: .valueChanged)
+//
+//
+//
+//                let newProgress = direction.newProgress(withCurrentProgress: currentProgress)
+//                //self.pageControl.set(progress: newProgress, animated: true)
+//                cell.pageControl.set(progress: newProgress, animated: true)
+//            }
+//
+            
+            
             
             
             return cell
@@ -237,6 +276,25 @@ class recipeItemTableViewController: UITableViewController {
         return view
     }
     
+    @objc func didChangePage(sender: CHIBasePageControl, cell: recipeMainTableViewCell){
+//        var offset = cell.scrollView.contentOffset
+//        offset.x = CGFloat(sender.currentPage) * cell.scrollView.bounds.size.width;
+//        cell.scrollView.setContentOffset(offset, animated: true)
+        print("hi")
+        var scrollViewWidth: CGFloat = cell.scrollView.frame.size.width
+        var contentWidth: Double = Double(cell.scrollView.contentOffset.x / scrollViewWidth)
+        var page : Double = round(contentWidth)
+        cell.pageControl.progress = page;
+        print("new progress \(cell.pageControl.progress)")
+        
+    }
+    
+    
+//   func didChangePage(sender: UIPageControl){
+//      var offset = RecipeImageScrollView.contentOffset
+//      offset.x = CGFloat(sender.currentPage) * RecipeImageScrollView.bounds.size.width;
+//      RecipeImageScrollView.setContentOffset(offset, animated: true)
+//    }
 
     /*
     // Override to support conditional editing of the table view.
