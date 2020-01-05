@@ -33,7 +33,7 @@ class userPageTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         
         switch section {
-        case 3:
+        case 2:
             return buttons.buttons.count
         default:
             return 1
@@ -68,8 +68,8 @@ class userPageTableViewController: UITableViewController {
 
             return cell
         }
-        else if section == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "recent history", for: indexPath)
+        else if section == 3 {
+            let cell = (tableView.dequeueReusableCell(withIdentifier: "recipeItemForUser", for: indexPath) as? userRecipeItemTableViewCell)!
 
             // Configure the cell...
 
@@ -96,9 +96,10 @@ class userPageTableViewController: UITableViewController {
         case 1:
             return 60
         case 2:
-            return 150
-        case 3:
             return 38
+        case 3:
+            return 560
+            
             //return UITableView.automaticDimension
         default:
             return UITableView.automaticDimension

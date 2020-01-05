@@ -8,7 +8,7 @@
 
 import Foundation
 
-class HowToCookList {
+class howToCookList {
      var howToCookList = [HowToCookTableViewCell]()
         
         init() {

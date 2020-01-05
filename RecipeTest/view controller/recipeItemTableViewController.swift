@@ -15,14 +15,17 @@ class recipeItemTableViewController: UITableViewController {
 //    @IBOutlet weak var RecipeImageScrollView: UIScrollView!
 //    @IBOutlet weak var pageControl: CHIPageControlJalapeno!
     
-    let identifiers = [1: "recipeMainCell", 2:"iconItem", 3:"creatorCellRecpipe", 4:"ingredients", 5: "how to cook"]
+    var item = RecipeItem()
+    var indexPath = IndexPath()
+//
+//    let identifiers = [1: "recipeMainCell", 2:"iconItem", 3:"creatorCellRecpipe", 4:"ingredients", 5: "how to cook"]
 
     var numImg = CGFloat(2.0) // depends on how many pictures user want to use, it is gonna change.
     
     let ingredients = IngredientsList()
-    let howToCookList = HowToCookList()
+    let HowToCookList = howToCookList()
     
-    
+    var currentPage:Int = 0
 
     enum Direction {
        case left
@@ -88,7 +91,7 @@ class recipeItemTableViewController: UITableViewController {
         case 5:
             return  ingredients.ingredientsList.count// this is for the number of ingredients
         case 6:
-            return howToCookList.howToCookList.count // this shows how to cook.
+            return HowToCookList.howToCookList.count // this shows how to cook.
         default:
             return 0
         }
@@ -134,6 +137,7 @@ class recipeItemTableViewController: UITableViewController {
             let cell : recipeMainTableViewCell =  (tableView.dequeueReusableCell(withIdentifier:"recipeMainCell") as? recipeMainTableViewCell)!
             
             
+            cell.scrollView.delegate = self
             //let _ = RecipeListCreator.creatorRecipeLists[indexPath.row]
             
             // 1枚目の画像
@@ -149,37 +153,16 @@ class recipeItemTableViewController: UITableViewController {
                    
             cell.scrollView.addSubview(secondImageView)
             
-            
-            // page controll
-//            var direction = Direction.right
-//            cell.pageControl.numberOfPages = Int(self.numImg)
-//
-//            cell.pageControl.progress = 0
-//
-//
-//            let currentProgress = Int(cell.pageControl.progress)
-//            let numberOfPages = cell.pageControl.numberOfPages
-//
-//            cell.pageControl.addTarget(cell.scrollView, action: #selector(didChangePage), for: .valueChanged)
-//
-//
-//
-//                let newProgress = direction.newProgress(withCurrentProgress: currentProgress)
-//                //self.pageControl.set(progress: newProgress, animated: true)
-//                cell.pageControl.set(progress: newProgress, animated: true)
+        
 //            }
 //
-            
-            
-            
-            
             return cell
             
         }
         else if indexPath.section == 1 {
             let cell: titleTableViewCell = (tableView.dequeueReusableCell(withIdentifier: "title") as? titleTableViewCell)!
            
-            cell.titleLabel.text = "Chinese Restaurant-Style Sautéed Green Beans"
+            cell.titleLabel.text = item.recipeName
             
             return cell
         }
@@ -188,8 +171,9 @@ class recipeItemTableViewController: UITableViewController {
             
             let cell: explanationTableViewCell = (tableView.dequeueReusableCell(withIdentifier: "explanation") as? explanationTableViewCell)!
             
-            cell.explanationLabel.text = "Brussels sprouts are one of the most underrated vegetables. These cruciferous green gems are good for you and, when cooked correctly, so darn delicious. Still not sure? We’ve rounded up a few recipes that prove it!"
+//            cell.explanationLabel.text = "Brussels sprouts are one of the most underrated vegetables. These cruciferous green gems are good for you and, when cooked correctly, so darn delicious. Still not sure? We’ve rounded up a few recipes that prove it!"
             
+            cell.explanationLabel.text = item.recipeExplanation
             
             
 //            cell.explanationLabel.sizeToFit()
@@ -199,7 +183,7 @@ class recipeItemTableViewController: UITableViewController {
         else if indexPath.section == 3 {
             let cell: iconItemTableViewCell = (tableView.dequeueReusableCell(withIdentifier: "iconItem") as? iconItemTableViewCell)!
             
-            cell.numLikeLabel.text = "11"
+            cell.numLikeLabel.text = String(item.numOfLike)
             
             return cell
             
@@ -207,7 +191,7 @@ class recipeItemTableViewController: UITableViewController {
         else if indexPath.section == 4 {
             let cell: creatorCellRecpipeTableViewCell = (tableView.dequeueReusableCell(withIdentifier: "creatorCellRecpipe") as? creatorCellRecpipeTableViewCell)!
             
-            cell.creatorNameLabel.text = "Risa Takata"
+            cell.creatorNameLabel.text = item.creator
             return cell
         }
         else if indexPath.section == 5 {
@@ -222,10 +206,10 @@ class recipeItemTableViewController: UITableViewController {
         
             let cell: HowToCookTableViewCell = (tableView.dequeueReusableCell(withIdentifier: "how to cook") as? HowToCookTableViewCell)!
             
-            let _ = howToCookList.howToCookList[indexPath.row]
+            let _ = HowToCookList.howToCookList[indexPath.row]
             
-            cell.howToCookLabel.text =  howToCookList.howToCookList[indexPath.row].howToCook
-            cell.howToCookLabel.text = howToCookList.howToCookList[indexPath.row].howToCook
+            cell.howToCookLabel.text =  HowToCookList.howToCookList[indexPath.row].howToCook
+            cell.howToCookLabel.text = HowToCookList.howToCookList[indexPath.row].howToCook
             
             return cell
         
@@ -289,7 +273,6 @@ class recipeItemTableViewController: UITableViewController {
         
     }
     
-    
 //   func didChangePage(sender: UIPageControl){
 //      var offset = RecipeImageScrollView.contentOffset
 //      offset.x = CGFloat(sender.currentPage) * RecipeImageScrollView.bounds.size.width;
@@ -341,4 +324,41 @@ class recipeItemTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension recipeItemTableViewController {
+    
+    override func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
+        print("")
+    }
+    
+//    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        print()
+//        
+//        self.currentPage = self.currentPage+1
+//        
+//        let cell = scrollView.superview?.superview?.superview as! recipeMainTableViewCell
+//        
+//        cell.pageControl.numberOfPages = Int(self.numImg)
+//        cell.pageControl.progress = Double(self.currentPage)
+//
+//        let currentProgress = Int(cell.pageControl.progress)
+//        
+//        
+//        var  direction = Direction.right
+//        if self.currentPage % 2 == 0 {
+//            direction = Direction.right
+//        } else {
+//            direction = Direction.left
+//        }
+//
+//        // page controll
+//
+//        cell.pageControl.addTarget(cell.scrollView, action: #selector(didChangePage), for: .valueChanged)
+//        let newProgress = direction.newProgress(withCurrentProgress: currentProgress)
+//            //self.pageControl.set(progress: newProgress, animated: true)
+//        cell.pageControl.set(progress: newProgress, animated: true)
+//        
+//    }
+    
 }

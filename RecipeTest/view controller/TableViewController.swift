@@ -11,10 +11,15 @@ import UIKit
 class TableViewController: UITableViewController {
 
    
+    func randomColor() -> UIColor{
+        let red = CGFloat(drand48())
+        let green = CGFloat(drand48())
+        let blue = CGFloat(drand48())
+        return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+    }
     
-    let RecipeListCreator = recipeListCreator()
-
-    
+    let recipeItemList = RecipeItemList()
+    let images: [UIImage] = [#imageLiteral(resourceName: "breakfast-450x310"), #imageLiteral(resourceName: "images"), #imageLiteral(resourceName: "breakfast-450x310"), #imageLiteral(resourceName: "breakfast-450x310"), #imageLiteral(resourceName: "breakfast-450x310"), #imageLiteral(resourceName: "images")]
         
     
     override func viewDidLoad() {
@@ -40,17 +45,18 @@ class TableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 3
+        return 4
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if section == 0 || section == 1 {
+        if section == 0 || section == 1 || section == 3{
             return 1
         }
         else if section == 2 {
-            return RecipeListCreator.creatorRecipeLists.count
-        } else {
+            return recipeItemList.recipeItemList.count
+        }
+        else {
             return 0
         }
     }
@@ -90,13 +96,15 @@ class TableViewController: UITableViewController {
 //            }
 //
             
-              let _ = RecipeListCreator.creatorRecipeLists[indexPath.row]
+              let _ = recipeItemList.recipeItemList[indexPath.row]
                   
 //              if let label1000 = cell!.viewWithTag(1000) as? UILabel {
 //                  label1000.text = RecipeListCreator.creatorRecipeLists[indexPath.row].textTest
 //              }
             
-            cell.nameRecipeLabel.text =  RecipeListCreator.creatorRecipeLists[indexPath.row].nameRecipe
+            cell.nameRecipeLabel.text =  recipeItemList.recipeItemList[indexPath.row].recipeName
+            cell.numLikesLabel.text = String(recipeItemList.recipeItemList[indexPath.row].numOfLike)
+            
 
               //tableView.deselectRow(at: indexPath, animated: true)
             //cell.backgroundColor = .green
@@ -107,6 +115,13 @@ class TableViewController: UITableViewController {
         
         }
         
+        else if indexPath.section == 3 {
+            let cell : RecipeItemCollectionViewTableViewCell =  (tableView.dequeueReusableCell(withIdentifier: "collectionView") as? RecipeItemCollectionViewTableViewCell)!
+//            let collectionView: = 
+                
+            return cell
+        }
+        
         let cell = UITableViewCell()
         return cell
         
@@ -115,7 +130,7 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             // tableView.cellForRow(at: indexPath) means it return the cell user tapped
             if let cell = tableView.cellForRow(at: indexPath) {
-                let item = RecipeListCreator.creatorRecipeLists[indexPath.row]
+                let item = recipeItemList.recipeItemList[indexPath.row]
                 // tableView.deselectRow(at: indexPath, animated: true) stop highlighting the cell after user release finger.
                 tableView.deselectRow(at: indexPath, animated: true)
             }
@@ -134,6 +149,8 @@ class TableViewController: UITableViewController {
         }
         else if indexPath.section == 2 {
             return 150.0
+        } else if indexPath.section == 3 {
+            return 435 // it needs to be until the end of the screen and if the items inside are more than the border, it should become bigger.
         }
         return UITableView.automaticDimension
     }
@@ -188,7 +205,67 @@ class TableViewController: UITableViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "recipePage Segue" {
+            if let recipeVC = segue.destination as? recipeItemTableViewController {
+                if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
+                    let item = recipeItemList.recipeItemList[indexPath.row]
+                    recipeVC.item = item
+                    recipeVC.indexPath = indexPath
+                }
+            }
+        }
+    }
+    
+
+    
+//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        guard let tableViewCell = cell as? RecipeItemCollectionViewTableViewCell else { return }
+//
+//        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
+//    }
+    
+    
+    
 }
+
+//extension TableViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+//    
+//    public func collectionView(_ collectionView: UICollectionView,
+//        numberOfItemsInSection section: Int) -> Int {
+//        print("item")
+//        return images.count
+//
+//    }
+//    
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        print("numberof")
+//        return 1
+//    }
+//
+//    public func collectionView(_ collectionView: UICollectionView,
+//                               cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        print("cell")
+//        let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: "recipeItem", for: indexPath) as? TestCollectionViewCell)!
+//        
+//        return cell
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+//    {
+//        let layout = collectionViewLayout as! UICollectionViewFlowLayout
+//        layout.minimumLineSpacing = 5.0
+//        layout.minimumInteritemSpacing = 2.5
+//        
+//        let numberOfItemsPerRow: CGFloat = 2.0
+//        let itemWidth = (collectionView.bounds.width - layout.minimumLineSpacing) / numberOfItemsPerRow
+//        
+//        return CGSize(width: itemWidth, height: itemWidth)
+//    }
+    
+//}
+
+
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
